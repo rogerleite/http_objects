@@ -1,8 +1,8 @@
 require "test_helper"
 
-describe HttpObjects::Headers::ContentType do
+describe HttpObjects::EntityHeaders::ContentType do
 
-  let(:subject_class) { HttpObjects::Headers::ContentType }
+  let(:subject_class) { HttpObjects::EntityHeaders::ContentType }
 
   describe "text/html; charset=ISO-8859-4" do
 
