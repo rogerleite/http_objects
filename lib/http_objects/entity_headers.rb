@@ -1,5 +1,12 @@
 module HttpObjects::EntityHeaders
 
+  # Content-Length
+  # The Content-Length entity-header field indicates the size of the entity-body, in decimal number of OCTETs, sent to the recipient or, in the case of the HEAD method, the size of the entity-body that would have been sent had the request been a GET.
+  #     Content-Length    = "Content-Length" ":" 1*DIGIT
+  # An example is
+  #     Content-Length: 3495
+  ContentLength = Class.new(HttpObjects::Parameters::BasicRules::Digit)
+
   # 14.21 Expires
   # The Expires entity-header field gives the date/time after which the response is considered stale. A stale cache entry may not normally be returned by a cache (either a proxy cache or a user agent cache) unless it is first validated with the origin server (or with an intermediate cache that has a fresh copy of the entity). See Expiration Model for further discussion of the expiration model.
   # The presence of an Expires field does not imply that the original resource will change or cease to exist at, before, or after that time.
