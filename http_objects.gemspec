@@ -13,4 +13,8 @@ Gem::Specification.new do |gem|
   gem.name          = "http_objects"
   gem.require_paths = ["lib"]
   gem.version       = HttpObjects::VERSION
+
+  gem.add_development_dependency "rake"
+  gem.add_development_dependency "minitest", "~> 3"
+  gem.add_development_dependency "minitest-reporters", "~> 0.7.0"
 end
