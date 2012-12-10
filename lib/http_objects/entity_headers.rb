@@ -1,6 +1,13 @@
 module HttpObjects::EntityHeaders
 
-  # Content-Length
+  # 14.7 Allow
+  # The Allow entity-header field lists the set of methods supported by the resource identified by the Request-URI. The purpose of this field is strictly to inform the recipient of valid methods associated with the resource. An Allow header field MUST be present in a 405 (Method Not Allowed) response.
+  #     Allow   = "Allow" ":" #Method
+  # Example of use:
+  #     Allow: GET, HEAD, PUT
+  Allow = Class.new(HttpObjects::Parameters::BasicRules::UpAlpha)
+
+  # 14.13 Content-Length
   # The Content-Length entity-header field indicates the size of the entity-body, in decimal number of OCTETs, sent to the recipient or, in the case of the HEAD method, the size of the entity-body that would have been sent had the request been a GET.
   #     Content-Length    = "Content-Length" ":" 1*DIGIT
   # An example is
