@@ -13,7 +13,7 @@ describe HttpObjects::Parameters::DateTime do
       subject.value.must_be_instance_of(::Time)
     end
     it "#value" do
-      subject.value.to_s.must_equal("1994-11-06 06:49:37 -0200")
+      subject.value.strftime("%Y-%m-%d %H:%M:%S %z").must_equal("1994-11-06 06:49:37 -0200")
     end
   end
 
@@ -26,7 +26,7 @@ describe HttpObjects::Parameters::DateTime do
       subject.value.must_be_instance_of(::Time)
     end
     it "#value" do
-      subject.value.to_s.must_equal("1994-11-06 06:49:37 -0200")
+      subject.value.strftime("%Y-%m-%d %H:%M:%S %z").must_equal("1994-11-06 06:49:37 -0200")
     end
   end
 

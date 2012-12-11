@@ -11,7 +11,7 @@ module HttpObjects::Parameters
 
     def self.parse(value)
       raw = value
-      value = Time.parse(value) rescue nil
+      value = Time.parse(value, true) rescue nil
       self.new(raw, value)
     end
 
