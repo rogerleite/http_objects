@@ -28,6 +28,13 @@ module HttpObjects::Parameters
       end
     end
 
+    # LOALPHA = <any US-ASCII lowercase letter "a".."z">
+    class LoAlpha < Base
+      def self.parse(value)
+        self.new(value, value.to_s.downcase)
+      end
+    end
+
   end
 
 end
