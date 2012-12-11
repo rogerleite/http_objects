@@ -36,6 +36,12 @@ module HttpObjects::EntityHeaders
   #                       ( absoluteURI | relativeURI )
   ContentLocation = Class.new(HttpObjects::Parameters::Uri)
 
+  # 14.15 Content-MD5
+  # The Content-MD5 entity-header field, as defined in RFC 1864 RFC 1864, is an MD5 digest of the entity-body for the purpose of providing an end-to-end message integrity check (MIC) of the entity-body. (Note: a MIC is good for detecting accidental modification of the entity-body in transit, but is not proof against malicious attacks.)
+  #     Content-MD5   = "Content-MD5" ":" md5-digest
+  #     md5-digest   = <base64 of 128 bit MD5 digest as per RFC 1864>
+  ContentMD5 = Class.new(HttpObjects::Parameters::BasicRules::Octet)
+
   # 14.21 Expires
   # The Expires entity-header field gives the date/time after which the response is considered stale. A stale cache entry may not normally be returned by a cache (either a proxy cache or a user agent cache) unless it is first validated with the origin server (or with an intermediate cache that has a fresh copy of the entity). See Expiration Model for further discussion of the expiration model.
   # The presence of an Expires field does not imply that the original resource will change or cease to exist at, before, or after that time.
