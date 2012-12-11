@@ -7,6 +7,10 @@ module HttpObjects::EntityHeaders
   #     Allow: GET, HEAD, PUT
   Allow = Class.new(HttpObjects::Parameters::BasicRules::UpAlpha)
 
+  # 14.11 Content-Encoding
+  # FIXME: Implement spec
+  ContentEncoding = Class.new(HttpObjects::Parameters::BasicRules::LoAlpha)
+
   # 14.12 Content-Language
   # The Content-Language entity-header field describes the natural language(s) of the intended audience for the enclosed entity. Note that this might not be equivalent to all the languages used within the entity-body.
   # Content-Language  = "Content-Language" ":" 1#language-tag
