@@ -30,6 +30,12 @@ module HttpObjects::EntityHeaders
   #     Content-Length: 3495
   ContentLength = Class.new(HttpObjects::Parameters::BasicRules::Digit)
 
+  # 14.14 Content-Location
+  # The Content-Location entity-header field MAY be used to supply the resource location for the entity enclosed in the message when that entity is accessible from a location separate from the requested resource's URI. A server SHOULD provide a Content-Location for the variant corresponding to the response entity; especially in the case where a resource has multiple entities associated with it, and those entities actually have separate locations by which they might be individually accessed, the server SHOULD provide a Content-Location for the particular variant which is returned.
+  #     Content-Location = "Content-Location" ":"
+  #                       ( absoluteURI | relativeURI )
+  ContentLocation = Class.new(HttpObjects::Parameters::Uri)
+
   # 14.21 Expires
   # The Expires entity-header field gives the date/time after which the response is considered stale. A stale cache entry may not normally be returned by a cache (either a proxy cache or a user agent cache) unless it is first validated with the origin server (or with an intermediate cache that has a fresh copy of the entity). See Expiration Model for further discussion of the expiration model.
   # The presence of an Expires field does not imply that the original resource will change or cease to exist at, before, or after that time.
