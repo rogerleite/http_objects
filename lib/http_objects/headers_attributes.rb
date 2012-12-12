@@ -12,15 +12,15 @@ module HttpObjects
 
       attr_name = header_name.downcase.gsub("-", "_")
       self.class_eval(%{
-        def #{attr_name}                              #  def content_type
-          self.fetch("#{header_name}", nil)           #    self.fetch("Content-Type", nil)
-        end                                           #  end
-        def #{attr_name}!                             #  def content_type!
-          self.#{attr_name}.value! if #{attr_name}?   #    self.content_type.value! if content_type?
-        end                                           #  end
-        def #{attr_name}?                             #  def content_type?
-          !!self.fetch("#{header_name}", nil)         #    !!self.fetch("Content-Type", nil)
-        end                                           #  end
+        def #{attr_name}                                 # def content_type
+          self.fetch("#{header_name}", nil)              #   self.fetch("Content-Type", nil)
+        end                                              # end
+        def #{attr_name}!                                # def content_type!
+          self.#{attr_name}.raw if #{attr_name}?         #   self.content_type.raw if content_type?
+        end                                              # end
+        def #{attr_name}?                                # def content_type?
+          !!self.fetch("#{header_name}", nil)            #   !!self.fetch("Content-Type", nil)
+        end                                              # end
       })
     end
 

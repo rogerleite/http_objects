@@ -5,6 +5,10 @@ module HttpObjects::EntityHeaders
 
   extend HttpObjects::Tools
 
+  def self.headers
+    self.constants.map { |header| self.const_get(header) }
+  end
+
   # 14.7 Allow
   # The Allow entity-header field lists the set of methods supported by the resource identified by the Request-URI. The purpose of this field is strictly to inform the recipient of valid methods associated with the resource. An Allow header field MUST be present in a 405 (Method Not Allowed) response.
   #     Allow   = "Allow" ":" #Method
