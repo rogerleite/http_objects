@@ -4,6 +4,21 @@ describe HttpObjects::Headers do
 
   subject { HttpObjects::Headers.new }
 
+  describe "include all HTTP Headers" do
+    it "include General Headers" do
+      subject_headers = HttpObjects::Headers.headers.values
+      HttpObjects::GeneralHeaders.headers.each do |h|
+        subject_headers.must_include(h)
+      end
+    end
+    it "include Entity Headers" do
+      subject_headers = HttpObjects::Headers.headers.values
+      HttpObjects::EntityHeaders.headers.each do |h|
+        subject_headers.must_include(h)
+      end
+    end
+  end
+
   describe "#[]=" do
     it "simple value" do
       subject["chave"] = "valor"
