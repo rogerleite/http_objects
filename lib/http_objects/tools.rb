@@ -1,5 +1,6 @@
 module HttpObjects
 
+  # **Extend** this and be happy declaring HTTP Headers
   module Tools
 
     def Header(name, klass)
@@ -10,6 +11,10 @@ module HttpObjects
         end
       }
       header_class
+    end
+
+    def headers
+      self.constants.map { |header| self.const_get(header) }
     end
 
   end
