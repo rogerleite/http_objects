@@ -26,4 +26,21 @@ module HttpObjects::RequestHeaders
   # Pending: implement spec
   AcceptLanguage = Header("Accept-Language", HttpObjects::Parameters::BasicRules::Token)
 
+  # 14.8 Authorization
+  # Pending: implement spec
+  Authorization = Header("Authorization", HttpObjects::Parameters::BasicRules::Token)
+
+  # 14.20 Expect
+  # Pending: implement spec
+  Expect = Header("Expect", HttpObjects::Parameters::BasicRules::Token)
+
+  # 14.22 From
+  #    From: webmaster@w3.org
+  # Pending: implement spec
+  From = Header("From", HttpObjects::Parameters::BasicRules::Token)
+
+  # 14.23 Host
+  #    Host: www.w3.org
+  Host = Header("Host", HttpObjects::Parameters::Uri)
+
 end
