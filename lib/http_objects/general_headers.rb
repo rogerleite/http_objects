@@ -2,6 +2,10 @@ module HttpObjects::GeneralHeaders
 
   extend HttpObjects::Tools
 
+  # 14.9 Cache-Control
+  # Pending: implement spec
+  CacheControl = Header("Cache-Control", HttpObjects::Parameters::BasicRules::Token)
+
   # 14.10 Connection
   #     Connection: close
   Connection = Header("Connection", HttpObjects::Parameters::BasicRules::Token)
@@ -10,8 +14,16 @@ module HttpObjects::GeneralHeaders
   #     Date: Tue, 15 Nov 1994 08:12:31 GMT
   Date = Header("Date", HttpObjects::Parameters::DateTime)
 
+  # 14.32 Pragma
+  Pragma = Header("Pragma", HttpObjects::Parameters::BasicRules::Token)
+
   # 14.40 Trailer
   Trailer = Header("Trailer", HttpObjects::Parameters::BasicRules::Token)
+
+  # 14.41 Transfer-Encoding
+  #    Transfer-Encoding: chunked
+  # Pending: implement spec
+  TransferEncoding = Header("Transfer-Encoding", HttpObjects::Parameters::BasicRules::Token)
 
   # 14.42 Upgrade
   #     Upgrade: HTTP/2.0, SHTTP/1.3, IRC/6.9, RTA/x11

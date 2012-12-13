@@ -16,6 +16,13 @@ describe HttpObjects::GeneralHeaders::Date do
   end
 end
 
+describe Pragma do
+  subject { Pragma.parse("") }
+  it "should be Token object" do
+    subject.must_be_kind_of(HttpObjects::Parameters::BasicRules::Token)
+  end
+end
+
 describe Trailer do
   subject { Trailer.parse("") }
   it "should be Token object" do
