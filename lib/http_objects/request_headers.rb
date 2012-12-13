@@ -71,4 +71,31 @@ module HttpObjects::RequestHeaders
   #    If-Unmodified-Since: Sat, 29 Oct 1994 19:43:31 GMT
   IfUnmodifiedSince = Header("If-Unmodified-Since", HttpObjects::Parameters::DateTime)
 
+  # 14.31 Max-Forwards
+  MaxForwards = Header("Max-Forwards", HttpObjects::Parameters::BasicRules::Digit)
+
+  # 14.34 Proxy-Authorization
+  # Pending: implement spec
+  ProxyAuthorization = Header("Proxy-Authorization", HttpObjects::Parameters::BasicRules::Token)
+
+  # 14.35 Range
+  # Pending: implement spec
+  Range = Header("Range", HttpObjects::Parameters::BasicRules::Token)
+
+  # 14.36 Referer
+  #    Referer: http://www.w3.org/hypertext/DataSources/Overview.html
+  Referer = Header("Referer", HttpObjects::Parameters::Uri)
+
+  # 14.39 TE
+  #    TE: deflate
+  #    TE:
+  #    TE: trailers, deflate;q=0.5
+  # Pending: implement spec
+  TE = Header("TE", HttpObjects::Parameters::BasicRules::Token)
+
+  # 14.43 User-Agent
+  #    User-Agent: CERN-LineMode/2.15 libwww/2.17b3
+  # Pending: implement spec
+  UserAgent = Header("User-Agent", HttpObjects::Parameters::BasicRules::Token)
+
 end
