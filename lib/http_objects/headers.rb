@@ -1,6 +1,7 @@
 require "http_objects/entity_headers"
 require "http_objects/general_headers"
 require "http_objects/request_headers"
+require "http_objects/response_headers"
 require "http_objects/headers_attributes"
 
 module HttpObjects
@@ -36,6 +37,9 @@ module HttpObjects
       support_header(header)
     end
     HttpObjects::RequestHeaders.headers.each do |header|
+      support_header(header)
+    end
+    HttpObjects::ResponseHeaders.headers.each do |header|
       support_header(header)
     end
 

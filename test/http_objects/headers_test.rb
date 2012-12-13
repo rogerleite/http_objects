@@ -21,6 +21,11 @@ describe HttpObjects::Headers do
         subject.must_include(h)
       end
     end
+    it "include Response Headers" do
+      HttpObjects::ResponseHeaders.headers.each do |h|
+        subject.must_include(h)
+      end
+    end
   end
 
   describe "#[]=" do
