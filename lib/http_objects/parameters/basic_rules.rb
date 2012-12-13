@@ -14,8 +14,7 @@ module HttpObjects::Parameters
       end
     end
 
-    # OCTET = <any 8-bit sequence of data>
-    class Octet < Base
+    class Token < Base
       def self.parse(value)
         self.new(value, value)
       end
