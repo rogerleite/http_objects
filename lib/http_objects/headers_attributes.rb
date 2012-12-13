@@ -1,11 +1,14 @@
 module HttpObjects
 
+  # Provides methods to register and retrieve HttpObjects::Tools.Header class.
   module HeadersAttributes
 
+    # Returns Hash of registered Header classes.
     def headers
       @headers ||= {}
     end
 
+    # Register *header_class* using *header_class.header_name*.
     def support_header(header_class)
       header_name = header_class.header_name
       headers[header_name] = header_class

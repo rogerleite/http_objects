@@ -13,6 +13,7 @@ module HttpObjects
       header_class
     end
 
+    # Returns Array of Header classes.
     def headers
       self.constants.map { |header| self.const_get(header) }
     end
