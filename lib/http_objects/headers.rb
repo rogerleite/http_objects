@@ -1,5 +1,6 @@
 require "http_objects/entity_headers"
 require "http_objects/general_headers"
+require "http_objects/request_headers"
 require "http_objects/headers_attributes"
 
 module HttpObjects
