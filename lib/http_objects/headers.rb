@@ -35,6 +35,9 @@ module HttpObjects
     HttpObjects::EntityHeaders.headers.each do |header|
       support_header(header)
     end
+    HttpObjects::RequestHeaders.headers.each do |header|
+      support_header(header)
+    end
 
     # Public: Associates key with value. If key is a valid HTTP Header name,
     # like "Content-Type", it parses as HTTP Object.

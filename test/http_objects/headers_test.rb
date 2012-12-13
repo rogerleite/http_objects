@@ -5,16 +5,20 @@ describe HttpObjects::Headers do
   subject { HttpObjects::Headers.new }
 
   describe "include all HTTP Headers" do
+    subject { HttpObjects::Headers.headers.values }
     it "include General Headers" do
-      subject_headers = HttpObjects::Headers.headers.values
       HttpObjects::GeneralHeaders.headers.each do |h|
-        subject_headers.must_include(h)
+        subject.must_include(h)
       end
     end
     it "include Entity Headers" do
-      subject_headers = HttpObjects::Headers.headers.values
       HttpObjects::EntityHeaders.headers.each do |h|
-        subject_headers.must_include(h)
+        subject.must_include(h)
+      end
+    end
+    it "include Request Headers" do
+      HttpObjects::RequestHeaders.headers.each do |h|
+        subject.must_include(h)
       end
     end
   end
