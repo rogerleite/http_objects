@@ -1,4 +1,4 @@
-module HttpObjects::EntityHeaders
+module HttpObjects::Headers::Entity
 
   extend HttpObjects::Tools
 

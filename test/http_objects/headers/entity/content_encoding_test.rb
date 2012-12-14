@@ -1,6 +1,6 @@
 require "test_helper"
 
-include HttpObjects::EntityHeaders
+include HttpObjects::Headers::Entity
 
 describe ContentEncoding do
 

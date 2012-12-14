@@ -12,7 +12,7 @@ describe HttpObjects::Hash do
       end
     end
     it "include Entity Headers" do
-      HttpObjects::EntityHeaders.headers.each do |h|
+      HttpObjects::Headers::Entity.headers.each do |h|
         subject.must_include(h)
       end
     end
@@ -35,7 +35,7 @@ describe HttpObjects::Hash do
     end
     it "HTTP Header value" do
       subject["Allow"] = "get, post"
-      subject["Allow"].must_be_instance_of(HttpObjects::EntityHeaders::Allow)
+      subject["Allow"].must_be_instance_of(HttpObjects::Headers::Entity::Allow)
     end
     it "without value" do
       subject["Allow"].must_be_nil
@@ -49,13 +49,13 @@ describe HttpObjects::Hash do
     end
     it "HTTP Header value" do
       subject.store("Allow", "get, post")
-      subject["Allow"].must_be_instance_of(HttpObjects::EntityHeaders::Allow)
+      subject["Allow"].must_be_instance_of(HttpObjects::Headers::Entity::Allow)
     end
   end
 
   it "header as instance method" do
     subject["Allow"] = "get, post"
-    subject.allow.must_be_instance_of(HttpObjects::EntityHeaders::Allow)
+    subject.allow.must_be_instance_of(HttpObjects::Headers::Entity::Allow)
     subject.allow?.must_equal(true)
     subject.allow!.must_equal("get, post")
   end

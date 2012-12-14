@@ -1,8 +1,8 @@
 require "test_helper"
 
-describe HttpObjects::EntityHeaders::ContentType do
+describe HttpObjects::Headers::Entity::ContentType do
 
-  let(:subject_class) { HttpObjects::EntityHeaders::ContentType }
+  let(:subject_class) { HttpObjects::Headers::Entity::ContentType }
   subject { subject_class.parse("text/html; charset=ISO-8859-4") }
 
   it "should be Media Type object" do

@@ -28,7 +28,7 @@ module HttpObjects
     HttpObjects::GeneralHeaders.headers.each do |header|
       support_header(header)
     end
-    HttpObjects::EntityHeaders.headers.each do |header|
+    HttpObjects::Headers::Entity.headers.each do |header|
       support_header(header)
     end
     HttpObjects::RequestHeaders.headers.each do |header|
