@@ -2,6 +2,23 @@ require "test_helper"
 
 include HttpObjects::Parameters::BasicRules
 
+describe Base do
+  subject { Class.new(Base) }
+  it "respond to .parse" do
+    subject.must_respond_to(:parse)
+  end
+  it ".parse must raise Error" do
+    lambda { subject.parse(nil) }.must_raise(RuntimeError)
+  end
+  describe "#initialize" do
+    it "raw and value" do
+      base_instance = subject.new("raw", "value")
+      base_instance.raw.must_equal("raw")
+      base_instance.value.must_equal("value")
+    end
+  end
+end
+
 describe Token do
   subject { Token.parse("aad883420fe64e865ba1725e5617222c") }
   it "#raw" do

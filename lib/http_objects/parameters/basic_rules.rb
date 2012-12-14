@@ -16,7 +16,7 @@ module HttpObjects::Parameters
       attr_reader :raw, :value
 
       def self.parse(value)
-        raise "must implement"
+        raise "Not implemented. You should override this method and return an instance of yourself. See HttpObjects::Parameters::BasicRules source for examples."
       end
 
       def initialize(raw, value)
