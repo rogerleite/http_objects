@@ -1,9 +1,4 @@
-
-module HttpObjects
-  module Headers
-  end
-end
-
+require "http_objects/headers/tools"
 require "http_objects/headers/entity"
 require "http_objects/headers/general"
 require "http_objects/headers/request"

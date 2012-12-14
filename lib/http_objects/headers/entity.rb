@@ -1,6 +1,6 @@
 module HttpObjects::Headers::Entity
 
-  extend HttpObjects::Tools
+  extend HttpObjects::Headers::Tools
 
   # 14.7 Allow
   #     Allow: GET, HEAD, PUT

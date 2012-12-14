@@ -1,6 +1,6 @@
 module HttpObjects::Headers::Response
 
-  extend HttpObjects::Tools
+  extend HttpObjects::Headers::Tools
 
   # 14.5 Accept-Ranges
   # Pending: implement spec

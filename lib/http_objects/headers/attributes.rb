@@ -1,6 +1,6 @@
 module HttpObjects::Headers
 
-  # Provides methods to register and retrieve HttpObjects::Tools.Header class.
+  # Provides methods to register and retrieve HttpObjects::Headers::Tools.Header class.
   module Attributes
 
     # Returns Hash of registered Header classes.

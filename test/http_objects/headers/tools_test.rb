@@ -1,10 +1,10 @@
 require "test_helper"
 
-describe HttpObjects::Tools do
+describe HttpObjects::Headers::Tools do
 
   TestObject = Class.new
 
-  subject { Object.new.extend(HttpObjects::Tools) }
+  subject { Object.new.extend(HttpObjects::Headers::Tools) }
 
   describe "Header" do
     it "creates Class" do
@@ -24,4 +24,5 @@ describe HttpObjects::Tools do
       header_class.parse("custom").must_equal("custom header class!")
     end
   end
+
 end

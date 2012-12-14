@@ -1,6 +1,6 @@
 module HttpObjects::Headers::Request
 
-  extend HttpObjects::Tools
+  extend HttpObjects::Headers::Tools
 
   # 14.1 Accept
   #    Accept: audio/*; q=0.2, audio/basic

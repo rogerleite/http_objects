@@ -1,6 +1,6 @@
 module HttpObjects::Headers::General
 
-  extend HttpObjects::Tools
+  extend HttpObjects::Headers::Tools
 
   # 14.9 Cache-Control
   # Pending: implement spec
