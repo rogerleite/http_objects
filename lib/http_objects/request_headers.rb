@@ -47,8 +47,18 @@ module HttpObjects::RequestHeaders
   #    If-Match: "xyzzy"
   #    If-Match: "xyzzy", "r2d2xxxx", "c3piozzzz"
   #    If-Match: *
-  # Pending: implement spec
-  IfMatch = Header("If-Match", HttpObjects::Parameters::BasicRules::Token)
+  IfMatch = Header("If-Match") do
+
+    # ( "*" | 1#entity-tag )
+    def self.parse(value)
+      if value == "*"
+        HttpObjects::Parameters::BasicRules::Token.parse("*")
+      else
+        HttpObjects::Parameters::EntityTags.parse(value)
+      end
+    end
+
+  end
 
   # 14.25 If-Modified-Since
   #    If-Modified-Since: Sat, 29 Oct 1994 19:43:31 GMT
@@ -60,8 +70,7 @@ module HttpObjects::RequestHeaders
   #    If-None-Match: "xyzzy", "r2d2xxxx", "c3piozzzz"
   #    If-None-Match: W/"xyzzy", W/"r2d2xxxx", W/"c3piozzzz"
   #    If-None-Match: *
-  # Pending: implement spec
-  IfNoneMatch = Header("If-None-Match", HttpObjects::Parameters::BasicRules::Token)
+  IfNoneMatch = Header("If-None-Match", IfMatch)
 
   # 14.27 If-Range
   # Pending: implement spec
