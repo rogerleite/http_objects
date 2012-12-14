@@ -3,8 +3,12 @@ module HttpObjects
   # **Extend** this and be happy declaring HTTP Headers
   module Tools
 
-    def Header(name, klass)
-      header_class = Class.new(klass)
+    def Header(name, klass = nil, &block)
+      header_class = if block_given?
+                       Class.new(&block)
+                     else
+                       Class.new(klass)
+                     end
       header_class.instance_eval %{
         def header_name
           "#{name}"
