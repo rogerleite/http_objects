@@ -48,7 +48,6 @@ module HttpObjects::RequestHeaders
   #    If-Match: "xyzzy", "r2d2xxxx", "c3piozzzz"
   #    If-Match: *
   IfMatch = Header("If-Match") do
-
     # ( "*" | 1#entity-tag )
     def self.parse(value)
       if value == "*"
@@ -57,7 +56,6 @@ module HttpObjects::RequestHeaders
         HttpObjects::Parameters::EntityTags.parse(value)
       end
     end
-
   end
 
   # 14.25 If-Modified-Since
@@ -73,8 +71,16 @@ module HttpObjects::RequestHeaders
   IfNoneMatch = Header("If-None-Match", IfMatch)
 
   # 14.27 If-Range
-  # Pending: implement spec
-  IfRange = Header("If-Range", HttpObjects::Parameters::BasicRules::Token)
+  IfRange = Header("If-Range") do
+    # ( entity-tag | HTTP-date )
+    def self.parse(value)
+      result = HttpObjects::Parameters::EntityTags.parse(value)
+      if value != "" && result.value == ""
+        result = HttpObjects::Parameters::DateTime.parse(value)
+      end
+      result
+    end
+  end
 
   # 14.28 If-Unmodified-Since
   #    If-Unmodified-Since: Sat, 29 Oct 1994 19:43:31 GMT
