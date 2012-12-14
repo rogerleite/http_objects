@@ -17,12 +17,13 @@ describe HttpObjects::Headers::Attributes do
     TestSubject.headers.must_equal({"Content-Type" => TestHeader})
   end
 
-  it "#support_header - define header as instance methods" do
-    TestSubject.support_header(TestHeader)
-    test_subject = TestSubject.new
-    test_subject.must_respond_to(:content_type)
-    test_subject.must_respond_to(:"content_type!")
-    test_subject.must_respond_to(:"content_type?")
+  it "#support_header - should yield block if given" do
+    flag = "out block"
+    TestSubject.support_header(TestHeader) do |h|
+      h.must_be_same_as(TestHeader)
+      flag = "inner block"
+    end
+    flag.must_equal("inner block")
   end
 
 end

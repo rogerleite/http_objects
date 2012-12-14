@@ -25,17 +25,20 @@ module HttpObjects
   class Hash < ::Hash
     extend HttpObjects::Headers::Attributes
 
-    HttpObjects::Headers::General.headers.each do |header|
-      support_header(header)
-    end
-    HttpObjects::Headers::Entity.headers.each do |header|
-      support_header(header)
-    end
-    HttpObjects::Headers::Request.headers.each do |header|
-      support_header(header)
-    end
-    HttpObjects::Headers::Response.headers.each do |header|
-      support_header(header)
+    support_all_headers do |header|
+      header_name = header.header_name
+      attr_name = header_name.downcase.gsub("-", "_")
+      self.class_eval(%{
+        def #{attr_name}                                 # def content_type
+          self.fetch("#{header_name}", nil)              #   self.fetch("Content-Type", nil)
+        end                                              # end
+        def #{attr_name}!                                # def content_type!
+          self.#{attr_name}.raw if #{attr_name}?         #   self.content_type.raw if content_type?
+        end                                              # end
+        def #{attr_name}?                                # def content_type?
+          !!self.fetch("#{header_name}", nil)            #   !!self.fetch("Content-Type", nil)
+        end                                              # end
+      })
     end
 
     # Public: Associates key with value. If key is a valid HTTP Header name,
