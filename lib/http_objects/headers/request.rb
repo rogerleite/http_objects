@@ -1,4 +1,4 @@
-module HttpObjects::RequestHeaders
+module HttpObjects::Headers::Request
 
   extend HttpObjects::Tools
 

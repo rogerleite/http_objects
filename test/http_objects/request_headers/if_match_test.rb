@@ -1,6 +1,6 @@
 require "test_helper"
 
-include HttpObjects::RequestHeaders
+include HttpObjects::Headers::Request
 
 describe IfMatch do
 

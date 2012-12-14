@@ -17,7 +17,7 @@ describe HttpObjects::Hash do
       end
     end
     it "include Request Headers" do
-      HttpObjects::RequestHeaders.headers.each do |h|
+      HttpObjects::Headers::Request.headers.each do |h|
         subject.must_include(h)
       end
     end
