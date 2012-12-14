@@ -4,27 +4,10 @@ describe HttpObjects::Hash do
 
   subject { HttpObjects::Hash.new }
 
-  describe "include all HTTP Headers" do
-    subject { HttpObjects::Hash.headers.values }
-    it "include General Headers" do
-      HttpObjects::Headers::General.headers.each do |h|
-        subject.must_include(h)
-      end
-    end
-    it "include Entity Headers" do
-      HttpObjects::Headers::Entity.headers.each do |h|
-        subject.must_include(h)
-      end
-    end
-    it "include Request Headers" do
-      HttpObjects::Headers::Request.headers.each do |h|
-        subject.must_include(h)
-      end
-    end
-    it "include Response Headers" do
-      HttpObjects::Headers::Response.headers.each do |h|
-        subject.must_include(h)
-      end
+  it "include all HTTP Headers" do
+    subject = HttpObjects::Hash.headers.values
+    HttpObjects::Headers.headers.each do |h|
+      subject.must_include(h)
     end
   end
 

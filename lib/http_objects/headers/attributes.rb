@@ -17,14 +17,9 @@ module HttpObjects::Headers
     end
 
     def support_all_headers(&block)
-      [HttpObjects::Headers::General,
-       HttpObjects::Headers::Entity,
-       HttpObjects::Headers::Request,
-       HttpObjects::Headers::Response].each do |headers_module|
-         headers_module.headers.each do |header|
-           support_header(header, &block)
-         end
-       end
+      HttpObjects::Headers.headers.each do |header|
+        support_header(header, &block)
+      end
     end
 
   end
