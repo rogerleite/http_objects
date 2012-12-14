@@ -1,6 +1,6 @@
 require "test_helper"
 
-include HttpObjects::ResponseHeaders
+include HttpObjects::Headers::Response
 
 describe Age do
 

@@ -22,7 +22,7 @@ describe HttpObjects::Hash do
       end
     end
     it "include Response Headers" do
-      HttpObjects::ResponseHeaders.headers.each do |h|
+      HttpObjects::Headers::Response.headers.each do |h|
         subject.must_include(h)
       end
     end

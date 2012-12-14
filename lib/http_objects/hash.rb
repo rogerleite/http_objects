@@ -34,7 +34,7 @@ module HttpObjects
     HttpObjects::Headers::Request.headers.each do |header|
       support_header(header)
     end
-    HttpObjects::ResponseHeaders.headers.each do |header|
+    HttpObjects::Headers::Response.headers.each do |header|
       support_header(header)
     end
 

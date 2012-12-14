@@ -1,4 +1,4 @@
-module HttpObjects::ResponseHeaders
+module HttpObjects::Headers::Response
 
   extend HttpObjects::Tools
 
