@@ -13,8 +13,7 @@ module HttpObjects::ResponseHeaders
   #    ETag: "xyzzy"
   #    ETag: W/"xyzzy"
   #    ETag: ""
-  # Pending: implement spec
-  ETag = Header("ETag", HttpObjects::Parameters::BasicRules::Token)
+  ETag = Header("ETag", HttpObjects::Parameters::EntityTags)
 
   # 14.30 Location
   #    Location: http://www.w3.org/pub/WWW/People.html
