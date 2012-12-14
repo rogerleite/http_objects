@@ -22,7 +22,7 @@ Or install it yourself as:
 #require 'rubygems'
 require 'http_objects'
 
-headers = HttpObjects::Headers.new
+headers = HttpObjects::Hash.new
 
 # it's a normal hash (for normal keys)
 headers["key"] = "value"
@@ -43,7 +43,7 @@ puts headers.content_type.value # => "text/html"
 puts headers.content_type['charset'] # => "utf-8"
 
 # finally one can access the object
-puts headers.content_type.inspect # => #<HttpObjects::Headers::MediaType ...>
+puts headers.content_type.inspect # => #<HttpObjects::EntityHeaders::ContentType ...>
 
 ```
 

@@ -1,11 +1,11 @@
 require "test_helper"
 
-describe HttpObjects::Headers do
+describe HttpObjects::Hash do
 
-  subject { HttpObjects::Headers.new }
+  subject { HttpObjects::Hash.new }
 
   describe "include all HTTP Headers" do
-    subject { HttpObjects::Headers.headers.values }
+    subject { HttpObjects::Hash.headers.values }
     it "include General Headers" do
       HttpObjects::GeneralHeaders.headers.each do |h|
         subject.must_include(h)
