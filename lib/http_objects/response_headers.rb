@@ -27,8 +27,18 @@ module HttpObjects::ResponseHeaders
   # 14.37 Retry-After
   #    Retry-After: Fri, 31 Dec 1999 23:59:59 GMT
   #    Retry-After: 120
-  # Pending: implement spec
-  RetryAfter = Header("Retry-After", HttpObjects::Parameters::BasicRules::Token)
+  RetryAfter = Header("Retry-After") do
+
+    #    Retry-After  = "Retry-After" ":" ( HTTP-date | delta-seconds )
+    def self.parse(value)
+      header_obj = HttpObjects::Parameters::DateTime.parse(value)
+      if header_obj.value.nil?
+        header_obj = HttpObjects::Parameters::BasicRules::Digit.parse(value)
+      end
+      header_obj
+    end
+
+  end
 
   # 14.38 Server
   #    Server: CERN/3.0 libwww/2.17
