@@ -23,7 +23,7 @@ module HttpObjects
   #    headers.content_type.inspect # => #<HttpObjects::Headers::MediaType ...>
   #
   class Hash < ::Hash
-    extend HttpObjects::HeadersAttributes
+    extend HttpObjects::Headers::Attributes
 
     HttpObjects::Headers::General.headers.each do |header|
       support_header(header)

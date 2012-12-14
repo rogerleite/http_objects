@@ -7,10 +7,10 @@ class TestHeader
 end
 
 class TestSubject
-  extend HttpObjects::HeadersAttributes
+  extend HttpObjects::Headers::Attributes
 end
 
-describe HttpObjects::HeadersAttributes do
+describe HttpObjects::Headers::Attributes do
 
   it "#support_header - register header on .headers" do
     TestSubject.support_header(TestHeader)
