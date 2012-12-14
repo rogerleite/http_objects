@@ -1,4 +1,4 @@
-module HttpObjects::GeneralHeaders
+module HttpObjects::Headers::General
 
   extend HttpObjects::Tools
 

@@ -25,7 +25,7 @@ module HttpObjects
   class Hash < ::Hash
     extend HttpObjects::HeadersAttributes
 
-    HttpObjects::GeneralHeaders.headers.each do |header|
+    HttpObjects::Headers::General.headers.each do |header|
       support_header(header)
     end
     HttpObjects::Headers::Entity.headers.each do |header|

@@ -7,7 +7,7 @@ describe HttpObjects::Hash do
   describe "include all HTTP Headers" do
     subject { HttpObjects::Hash.headers.values }
     it "include General Headers" do
-      HttpObjects::GeneralHeaders.headers.each do |h|
+      HttpObjects::Headers::General.headers.each do |h|
         subject.must_include(h)
       end
     end

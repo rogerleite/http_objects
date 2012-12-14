@@ -1,6 +1,6 @@
 require "test_helper"
 
-include HttpObjects::GeneralHeaders
+include HttpObjects::Headers::General
 
 describe Connection do
   subject { Connection.parse("close") }
@@ -9,8 +9,8 @@ describe Connection do
   end
 end
 
-describe HttpObjects::GeneralHeaders::Date do
-  subject { HttpObjects::GeneralHeaders::Date.parse("Tue, 15 Nov 1994 08:12:31 GMT") }
+describe HttpObjects::Headers::General::Date do
+  subject { HttpObjects::Headers::General::Date.parse("Tue, 15 Nov 1994 08:12:31 GMT") }
   it "should be DateTime object" do
     subject.must_be_kind_of(HttpObjects::Parameters::DateTime)
   end
