@@ -9,7 +9,7 @@ describe HttpObjects::HeadersHash do
   end
 
   it "include all HTTP Headers" do
-    subject = HttpObjects::HeadersHash.headers.values
+    subject = HttpObjects::HeadersHash.attributes.values
     HttpObjects::Headers.headers.each do |h|
       subject.must_include(h)
     end

@@ -1,19 +1,36 @@
 module HttpObjects::Headers
 
-  # Provides methods to register and retrieve HttpObjects::Headers::Tools.Header class.
+  # Public: Extend this module and you be able to retrieve and register
+  # attributes in your class.
+  #
+  # Examples
+  #
+  #    class SampleAttributes
+  #      extend HttpObjects::Headers::Attributes
+  #      register_attribute "MyAttributeName", MyObject do |object|
+  #        # optional hook
+  #      end
+  #    end
+  #
+  #    SampleAttributes.attributes # => {"MyAttributeName" => MyObject}
   module Attributes
 
-    # Returns Hash of registered Header classes.
-    def headers
-      @headers ||= {}
+    # Returns Hash of registered attributes.
+    def attributes
+      @attributes ||= {}
     end
 
-    # Register *header_class* using *header_class.header_name*.
-    def support_header(header_class)
-      header_name = header_class.header_name
-      headers[header_name] = header_class
-      yield(header_class) if block_given?
-      header_class
+    # Public: Register on *attributes*, the pair name and attr_class.
+    #
+    # name - String identifying attribute.
+    # attr_class - Class to identify the attribute.
+    #
+    # Yields the attr_class informed. Optional.
+    #
+    # Returns nothing.
+    def register_attribute(name, attr_class)
+      attributes[name] = attr_class
+      yield(attr_class) if block_given?
     end
 
   end

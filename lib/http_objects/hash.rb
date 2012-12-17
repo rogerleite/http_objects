@@ -22,7 +22,7 @@ module HttpObjects
 
     # Public: Register attribute class with *MethodCreator* block.
     def self.add_attribute(attr_class)
-      support_header(attr_class, &MethodCreator)
+      register_attribute(attr_class.header_name, attr_class, &MethodCreator)
     end
 
     # Public: Associates key with value. If key is a valid HTTP Header name,
@@ -31,7 +31,7 @@ module HttpObjects
     # key - key or HTTP Header name.
     # value - object. If key is HTTP Header name, value should be a String.
     def []=(key, value)
-      if (header_class = self.class.headers[key])
+      if (header_class = self.class.attributes[key])
         value = header_class.parse(value)
       end
       super(key, value)

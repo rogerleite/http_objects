@@ -1,26 +1,22 @@
 require "test_helper"
 
-class TestHeader
-  def self.header_name
-    "Content-Type"
-  end
-end
-
 class TestSubject
   extend HttpObjects::Headers::Attributes
 end
 
 describe HttpObjects::Headers::Attributes do
 
-  it "#support_header - register header on .headers" do
-    TestSubject.support_header(TestHeader)
-    TestSubject.headers.must_equal({"Content-Type" => TestHeader})
+  MyAttribute = Class.new
+
+  it "#register_attribute - register header on .attributes" do
+    TestSubject.register_attribute("MyAttribute", MyAttribute)
+    TestSubject.attributes.must_equal({"MyAttribute" => MyAttribute})
   end
 
-  it "#support_header - should yield block if given" do
+  it "#register_attribute - should yield block if given" do
     flag = "out block"
-    TestSubject.support_header(TestHeader) do |h|
-      h.must_be_same_as(TestHeader)
+    TestSubject.register_attribute("MyAttribute", MyAttribute) do |h|
+      h.must_be_same_as(MyAttribute)
       flag = "inner block"
     end
     flag.must_equal("inner block")
