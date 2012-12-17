@@ -28,4 +28,26 @@ describe Cache do
     end
   end
 
+  describe "should accept one-directive declaration" do
+    subject { Cache.parse("no-cache") }
+    it "#no_cache? be true" do
+      subject.no_cache?.must_equal(true)
+    end
+  end
+
+  describe "should accept multi-directive declaration" do
+    subject { Cache.parse("no-cache, max-age=600, private = \"Accept\"") }
+
+    it "#no_cache? be true" do
+      subject.no_cache?.must_equal(true)
+    end
+    it "#max_age be 600" do
+      subject.max_age?.must_equal(true)
+      subject.max_age.value.must_equal(600)
+    end
+    it "#private be Accept" do
+      subject.private!.must_equal("Accept")
+    end
+  end
+
 end

@@ -39,6 +39,9 @@ module HttpObjects::Headers
     # cache-extension = token [ "=" ( token | quoted-string ) ]
     class Cache < HttpObjects::Hash
 
+      # token [ "=" ( token | quoted-string ) ]
+      TOKEN = /([^,=]+)(?:=\s*(?:\"([^\"]*)\"|\'([^\']*)\'|([^,]*)))?/
+
       attr_reader :raw, :value
 
       register_attribute "no-cache",         RawValue, &MethodCreator
@@ -55,7 +58,15 @@ module HttpObjects::Headers
       register_attribute "s-maxage",         BasicRules::Digit, &MethodCreator
 
       def self.parse(value)
-        self.new(value)
+        cache = self.new(value)
+        value.scan(TOKEN).each do |key, v1, v2, v3|
+          key = key.strip
+          next if key.length.zero?
+          key.downcase!
+          key_value = (v1 || v2 || v3).to_s
+          cache[key] = key_value.strip
+        end
+        cache
       end
 
       def initialize(value)
