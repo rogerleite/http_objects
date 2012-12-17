@@ -22,7 +22,7 @@ Or install it yourself as:
 #require 'rubygems'
 require 'http_objects'
 
-headers = HttpObjects::Hash.new
+headers = HttpObjects::HeadersHash.new
 
 # it's a normal hash (for normal keys)
 headers["key"] = "value"

@@ -2,14 +2,24 @@ require "test_helper"
 
 describe HttpObjects::Hash do
 
-  subject { HttpObjects::Hash.new }
-
-  it "include all HTTP Headers" do
-    subject = HttpObjects::Hash.headers.values
-    HttpObjects::Headers.headers.each do |h|
-      subject.must_include(h)
+  MyObject = Class.new do
+    attr_reader :value, :raw
+    def self.header_name
+      "MyObject"
+    end
+    def self.parse(value)
+      self.new(value)
+    end
+    def initialize(value)
+      @raw, @value = value
     end
   end
+
+  class TestHash < HttpObjects::Hash
+    add_attribute(MyObject)
+  end
+
+  subject { TestHash.new }
 
   describe "#[]=" do
     it "simple value" do
@@ -17,11 +27,11 @@ describe HttpObjects::Hash do
       subject["chave"].must_equal("valor")
     end
     it "HTTP Header value" do
-      subject["Allow"] = "get, post"
-      subject["Allow"].must_be_instance_of(HttpObjects::Headers::Entity::Allow)
+      subject["MyObject"] = "value"
+      subject["MyObject"].must_be_instance_of(MyObject)
     end
     it "without value" do
-      subject["Allow"].must_be_nil
+      subject["MyObject"].must_be_nil
     end
   end
 
@@ -31,16 +41,35 @@ describe HttpObjects::Hash do
       subject["chave"].must_equal("valor")
     end
     it "HTTP Header value" do
-      subject.store("Allow", "get, post")
-      subject["Allow"].must_be_instance_of(HttpObjects::Headers::Entity::Allow)
+      subject.store("MyObject", "value")
+      subject["MyObject"].must_be_instance_of(MyObject)
     end
   end
 
   it "header as instance method" do
-    subject["Allow"] = "get, post"
-    subject.allow.must_be_instance_of(HttpObjects::Headers::Entity::Allow)
-    subject.allow?.must_equal(true)
-    subject.allow!.must_equal("get, post")
+    subject.store("MyObject", "value")
+    subject["MyObject"].must_be_instance_of(MyObject)
+
+    subject.myobject.must_be_instance_of(MyObject)
+    subject.myobject?.must_equal(true)
+    subject.myobject!.must_equal("value")
+  end
+
+end
+
+describe HttpObjects::HeadersHash do
+
+  subject { HttpObjects::HeadersHash.new }
+
+  it "kind of HttpObjects::Hash" do
+    subject.must_be_kind_of(HttpObjects::Hash)
+  end
+
+  it "include all HTTP Headers" do
+    subject = HttpObjects::HeadersHash.headers.values
+    HttpObjects::Headers.headers.each do |h|
+      subject.must_include(h)
+    end
   end
 
 end
