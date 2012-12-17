@@ -4,18 +4,17 @@ module HttpObjects
     extend HttpObjects::Headers::Attributes
 
     # Public: Block that creates method based on attribute name.
-    MethodCreator = Proc.new do |header|
-      header_name = header.header_name
-      attr_name = header_name.downcase.gsub("-", "_")
+    MethodCreator = Proc.new do |name, header|
+      attr_name = name.downcase.gsub("-", "_")
       self.class_eval(%{
         def #{attr_name}                          # def content_type
-          self.fetch("#{header_name}", nil)       #   self.fetch("Content-Type", nil)
+          self.fetch("#{name}", nil)       #   self.fetch("Content-Type", nil)
         end                                       # end
         def #{attr_name}!                         # def content_type!
           self.#{attr_name}.raw if #{attr_name}?  #   self.content_type.raw if content_type?
         end                                       # end
         def #{attr_name}?                         # def content_type?
-          !!self.fetch("#{header_name}", nil)     #   !!self.fetch("Content-Type", nil)
+          !!self.fetch("#{name}", nil)     #   !!self.fetch("Content-Type", nil)
         end                                       # end
       })
     end

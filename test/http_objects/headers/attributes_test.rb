@@ -15,7 +15,8 @@ describe HttpObjects::Headers::Attributes do
 
   it "#register_attribute - should yield block if given" do
     flag = "out block"
-    TestSubject.register_attribute("MyAttribute", MyAttribute) do |h|
+    TestSubject.register_attribute("MyAttribute", MyAttribute) do |name, h|
+      name.must_equal("MyAttribute")
       h.must_be_same_as(MyAttribute)
       flag = "inner block"
     end

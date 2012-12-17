@@ -25,12 +25,12 @@ module HttpObjects::Headers
     # name - String identifying attribute.
     # attr_class - Class to identify the attribute.
     #
-    # Yields the attr_class informed. Optional.
+    # Yields name and attr_class informed. Optional.
     #
     # Returns nothing.
     def register_attribute(name, attr_class)
       attributes[name] = attr_class
-      yield(attr_class) if block_given?
+      yield(name, attr_class) if block_given?
     end
 
   end
