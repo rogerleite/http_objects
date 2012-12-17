@@ -16,12 +16,6 @@ module HttpObjects::Headers
       header_class
     end
 
-    def support_all_headers(&block)
-      HttpObjects::Headers.headers.each do |header|
-        support_header(header, &block)
-      end
-    end
-
   end
 
 end
