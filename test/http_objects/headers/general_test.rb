@@ -2,6 +2,13 @@ require "test_helper"
 
 include HttpObjects::Headers::General
 
+describe CacheControl do
+  subject { CacheControl.parse("no-cache, public") }
+  it "should be Cache directive object" do
+    subject.must_be_kind_of(HttpObjects::Headers::Directives::Cache)
+  end
+end
+
 describe Connection do
   subject { Connection.parse("close") }
   it "should be Token object" do

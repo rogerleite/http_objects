@@ -4,7 +4,7 @@ module HttpObjects::Headers::General
 
   # 14.9 Cache-Control
   # Pending: implement spec
-  CacheControl = Header("Cache-Control", HttpObjects::Parameters::BasicRules::Token)
+  CacheControl = Header("Cache-Control", HttpObjects::Headers::Directives::Cache)
 
   # 14.10 Connection
   #     Connection: close

@@ -1,9 +1,13 @@
 require "http_objects/headers/tools"
+require "http_objects/headers/attributes"
+require "http_objects/hash"
+
+require "http_objects/headers/directives/cache"
+
 require "http_objects/headers/entity"
 require "http_objects/headers/general"
 require "http_objects/headers/request"
 require "http_objects/headers/response"
-require "http_objects/headers/attributes"
 
 module HttpObjects
 
