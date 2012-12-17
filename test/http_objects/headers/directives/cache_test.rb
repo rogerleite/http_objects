@@ -35,6 +35,14 @@ describe Cache do
     end
   end
 
+  describe "should accept standalone directives" do
+    subject { Cache.parse("no-cache, public") }
+
+    it "#public?" do
+      subject.public?.must_equal(true)
+    end
+  end
+
   describe "should accept multi-directive declaration" do
     subject { Cache.parse("no-cache, max-age=600, private = \"Accept\"") }
 
@@ -47,6 +55,17 @@ describe Cache do
     end
     it "#private be Accept" do
       subject.private!.must_equal("Accept")
+    end
+  end
+
+  describe "should accept extension directives" do
+    subject { Cache.parse("private, community=\"UCI\", stand-alone-extension") }
+
+    it "should access extension directive with value" do
+      subject["community"].must_equal("UCI")
+    end
+    it "should access extension directive without value" do
+      subject.key?("stand-alone-extension").must_equal(true)
     end
   end
 
