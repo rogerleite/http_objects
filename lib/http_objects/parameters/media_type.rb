@@ -1,6 +1,11 @@
 module HttpObjects::Parameters
 
   # 3.7. Media Types
+  #
+  # media-type = type "/" subtype *( ";" parameter )
+  # type       = token
+  # subtype    = token
+  #
   # Examples
   #   text/html; charset=ISO-8859-4
   class MediaType
@@ -12,6 +17,7 @@ module HttpObjects::Parameters
       value, params = value.split(";", 2)
 
       parameters = {}
+      params = params.to_s
       params.split(/\s*;\s*/).each do |param|
         name, param_value = param.split(/=/)
         name = name.gsub(/\s*/, "")

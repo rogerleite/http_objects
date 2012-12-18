@@ -1,18 +1,29 @@
 require "test_helper"
 
-describe HttpObjects::Parameters::MediaType do
+include HttpObjects::Parameters
 
-  let(:subject_class) { HttpObjects::Parameters::MediaType }
+describe MediaType do
 
-  describe "text/html; charset=ISO-8859-4" do
-
-    subject { subject_class.parse("text/html; charset=ISO-8859-4") }
-
+  describe "with only type/subtype" do
+    subject { MediaType.parse("text/html") }
     it "#raw" do
-      subject.raw.must_equal("text/html; charset=ISO-8859-4")
+      subject.raw.must_equal("text/html")
     end
     it "#value" do
       subject.value.must_equal("text/html")
+    end
+    it "#parameters" do
+      subject.parameters.must_be_empty
+    end
+  end
+
+  describe "with type/subtype and one parameter" do
+    subject { MediaType.parse("application/xhtml+xml; charset=ISO-8859-4") }
+    it "#raw" do
+      subject.raw.must_equal("application/xhtml+xml; charset=ISO-8859-4")
+    end
+    it "#value" do
+      subject.value.must_equal("application/xhtml+xml")
     end
     it "#parameters" do
       subject.parameters.must_equal("charset" => "ISO-8859-4")
