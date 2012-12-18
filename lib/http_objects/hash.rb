@@ -46,6 +46,12 @@ module HttpObjects
     end
     alias :store :[]=
 
+    def [](key)
+      value = self.fetch(key, nil)
+      value = value.raw if value.respond_to?(:raw)
+      value
+    end
+
   end
 
 end

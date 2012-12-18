@@ -28,7 +28,7 @@ describe HttpObjects::Hash do
     end
     it "with values" do
       hash = subject.new("MyObject" => "value")
-      hash["MyObject"].must_be_instance_of(MyObject)
+      hash.myobject.must_be_instance_of(MyObject)
     end
     it "should reuse same object" do
       hash_headers = subject.new("MyObject" => "value")
@@ -44,10 +44,21 @@ describe HttpObjects::Hash do
     end
     it "HTTP Header value" do
       subject["MyObject"] = "value"
-      subject["MyObject"].must_be_instance_of(MyObject)
+      subject.myobject.must_be_instance_of(MyObject)
     end
     it "without value" do
       subject["MyObject"].must_be_nil
+    end
+  end
+
+  describe "#[]" do
+    it "simple value" do
+      subject["chave"] = "valor"
+      subject["chave"].must_equal("valor")
+    end
+    it "returns value from http header" do
+      subject["MyObject"] = "value"
+      subject["MyObject"].must_equal("value")
     end
   end
 
@@ -58,13 +69,12 @@ describe HttpObjects::Hash do
     end
     it "HTTP Header value" do
       subject.store("MyObject", "value")
-      subject["MyObject"].must_be_instance_of(MyObject)
+      subject.myobject.must_be_instance_of(MyObject)
     end
   end
 
   it "header as instance method" do
     subject.store("MyObject", "value")
-    subject["MyObject"].must_be_instance_of(MyObject)
 
     subject.myobject.must_be_instance_of(MyObject)
     subject.myobject?.must_equal(true)
