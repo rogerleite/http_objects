@@ -21,6 +21,22 @@ describe HttpObjects::Hash do
 
   subject { TestHash.new }
 
+  describe "#initialize" do
+    subject { TestHash }
+    it "without value" do
+      subject.new.must_be_kind_of(HttpObjects::Hash)
+    end
+    it "with values" do
+      hash = subject.new("MyObject" => "value")
+      hash["MyObject"].must_be_instance_of(MyObject)
+    end
+    it "should reuse same object" do
+      hash_headers = subject.new("MyObject" => "value")
+      hash = subject.new(hash_headers)
+      hash.must_be_same_as(hash_headers)
+    end
+  end
+
   describe "#[]=" do
     it "simple value" do
       subject["chave"] = "valor"

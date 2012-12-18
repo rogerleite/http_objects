@@ -24,6 +24,15 @@ module HttpObjects
       register_attribute(attr_class.header_name, attr_class, &MethodCreator)
     end
 
+    def self.new(hash = nil)
+      hash.kind_of?(HttpObjects::Hash) ? hash : super(hash)
+    end
+
+    def initialize(hash = nil)
+      super()
+      hash.each { |(key, value)| self[key] = value } unless hash.nil?
+    end
+
     # Public: Associates key with value. If key is a valid HTTP Header name,
     # like "Content-Type", it parses as HTTP Object.
     #
