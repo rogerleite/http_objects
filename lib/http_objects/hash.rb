@@ -21,7 +21,8 @@ module HttpObjects
 
     # Public: Register attribute class with *MethodCreator* block.
     def self.add_attribute(attr_class)
-      register_attribute(attr_class.header_name, attr_class, &MethodCreator)
+      key = normalize_key(attr_class.header_name)
+      register_attribute(key, attr_class, &MethodCreator)
     end
 
     def self.new(hash = nil)
@@ -39,6 +40,7 @@ module HttpObjects
     # key - key or HTTP Header name.
     # value - object. If key is HTTP Header name, value should be a String.
     def []=(key, value)
+      key = self.class.normalize_key(key)
       if (header_class = self.class.attributes[key])
         value = header_class.parse(value)
       end
@@ -47,9 +49,16 @@ module HttpObjects
     alias :store :[]=
 
     def [](key)
+      key = self.class.normalize_key(key)
       value = self.fetch(key, nil)
       value = value.raw if value.respond_to?(:raw)
       value
+    end
+
+    protected
+
+    def self.normalize_key(key)
+      key.downcase if key.respond_to?(:downcase)
     end
 
   end

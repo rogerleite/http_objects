@@ -81,4 +81,9 @@ describe HttpObjects::Hash do
     subject.myobject!.must_equal("value")
   end
 
+  it "keys, be case insensitive" do
+    subject["My-Key"] = "value"
+    subject["my-key"].must_equal("value")
+  end
+
 end
