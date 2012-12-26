@@ -55,6 +55,13 @@ module HttpObjects
       value
     end
 
+    def to_s
+      self.keys.inject("") do |out, key|
+        out << ", " unless out.empty?
+        out << "#{key}: #{self[key]}"
+      end
+    end
+
     protected
 
     def self.normalize_key(key)

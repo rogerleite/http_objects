@@ -86,4 +86,12 @@ describe HttpObjects::Hash do
     subject["my-key"].must_equal("value")
   end
 
+  it "#to_s" do
+    subject["My-Key"] = "value"
+    subject["MyObject"] = "myvalue"
+
+    hash_in_rb18_sucks = /(my-key: value, myobject: myvalue)|(myobject: myvalue, my-key: value)/
+    subject.to_s.must_match(hash_in_rb18_sucks)
+  end
+
 end
