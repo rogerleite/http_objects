@@ -30,4 +30,25 @@ describe MediaType do
     end
   end
 
+  describe "#charset" do
+    describe "with value" do
+      subject { MediaType.parse("application/xhtml+xml; charset=ISO-8859-4") }
+      it "#charset?" do
+        subject.charset?.must_equal(true)
+      end
+      it "#charset!" do
+        subject.charset!.must_equal("ISO-8859-4")
+      end
+    end
+    describe "without value" do
+      subject { MediaType.parse("application/xhtml+xml") }
+      it "#charset?" do
+        subject.charset?.must_equal(false)
+      end
+      it "#charset!" do
+        subject.charset!.must_be_nil
+      end
+    end
+  end
+
 end

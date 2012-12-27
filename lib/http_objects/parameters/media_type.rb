@@ -30,6 +30,14 @@ module HttpObjects::Parameters
       @raw, @value, @parameters = raw, value, parameters
     end
 
+    def charset?
+      !!self.charset!
+    end
+
+    def charset!
+      @parameters.fetch("charset", nil)
+    end
+
   end
 
 end
