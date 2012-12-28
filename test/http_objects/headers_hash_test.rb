@@ -15,4 +15,14 @@ describe HttpObjects::HeadersHash do
     end
   end
 
+  describe "#initialize" do
+    subject { HttpObjects::HeadersHash }
+    it "with values" do
+      hash = subject.new("MyObject" => "value", "Content-Type" => "text/plain")
+      hash["MyObject"].must_equal("value")
+      hash.content_type.wont_be_nil
+      hash.content_type.value.must_equal("text/plain")
+    end
+  end
+
 end

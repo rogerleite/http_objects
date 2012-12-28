@@ -29,6 +29,7 @@ describe HttpObjects::Hash do
     it "with values" do
       hash = subject.new("MyObject" => "value")
       hash.myobject.must_be_instance_of(MyObject)
+      hash.myobject!.must_equal("value")
     end
     it "should reuse same object" do
       hash_headers = subject.new("MyObject" => "value")

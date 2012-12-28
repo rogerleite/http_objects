@@ -31,7 +31,7 @@ module HttpObjects
 
     def initialize(hash = nil)
       super()
-      hash.each { |(key, value)| self[key] = value } unless hash.nil?
+      hash.each_pair { |(key, value)| self[key] = value } unless hash.nil?
     end
 
     # Public: Associates key with value. If key is a valid HTTP Header name,
