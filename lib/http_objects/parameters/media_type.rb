@@ -14,10 +14,11 @@ module HttpObjects::Parameters
 
     def self.parse(value)
       raw = value
-      value, params = value.split(";", 2)
+      value, params = value.to_s.split(";", 2)
+      value = value.to_s
+      params = params.to_s
 
       parameters = {}
-      params = params.to_s
       params.split(/\s*;\s*/).each do |param|
         name, param_value = param.split(/=/)
         name = name.gsub(/\s*/, "")
@@ -27,7 +28,9 @@ module HttpObjects::Parameters
     end
 
     def initialize(raw, value, parameters)
-      @raw, @value, @parameters = raw, value, parameters
+      @raw = raw
+      @value = value
+      @parameters = parameters
     end
 
     def charset?

@@ -4,6 +4,13 @@ include HttpObjects::Parameters
 
 describe MediaType do
 
+  it "support nil value" do
+    subject = MediaType.parse(nil)
+    subject.must_be_instance_of(MediaType)
+    subject.raw.must_be_nil
+    subject.value.must_equal("")
+  end
+
   describe "with only type/subtype" do
     subject { MediaType.parse("text/html") }
     it "#raw" do
