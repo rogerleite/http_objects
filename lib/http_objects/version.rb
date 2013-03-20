@@ -1,3 +1,3 @@
 module HttpObjects
-  VERSION = "0.0.5pre"
+  VERSION = "0.0.5"
 end
