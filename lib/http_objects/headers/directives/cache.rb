@@ -59,7 +59,7 @@ module HttpObjects::Headers
 
       def self.parse(value)
         cache = self.new(value)
-        value.scan(TOKEN).each do |key, v1, v2, v3|
+        cache.value.scan(TOKEN).each do |key, v1, v2, v3|
           key = key.strip
           next if key.length.zero?
           key.downcase!
@@ -71,7 +71,7 @@ module HttpObjects::Headers
 
       def initialize(value)
         @raw = value
-        @value = value
+        @value = value.is_a?(Array)? value.first : value.to_s
       end
 
     end

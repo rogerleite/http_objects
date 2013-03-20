@@ -69,4 +69,16 @@ describe Cache do
     end
   end
 
+  describe "should not crash on multiple headers" do
+    let(:cache_headers) { ["max-age=15, public", "max-age=86400"] }
+    subject { Cache.parse(cache_headers) }
+
+    it "should return Array on #raw" do
+      subject.raw.must_equal(cache_headers)
+    end
+    it "#value should catch first" do
+      subject.value.must_equal(cache_headers.first)
+    end
+  end
+
 end
